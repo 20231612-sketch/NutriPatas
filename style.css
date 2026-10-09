@@ -1,0 +1,149 @@
+/* =========================================================
+   NutriPatas - style.css
+   Estilos compartidos por todas las páginas.
+   La mayor parte del diseño usa clases de Tailwind (CDN);
+   aquí van los ajustes globales y los componentes propios
+   (hoja inferior, toast, animaciones).
+   ========================================================= */
+
+:root {
+  --app-max: 30rem;               /* ancho máximo de la "app móvil" en pantallas grandes */
+  --toast-bottom: 6.5rem;
+}
+
+/* Fondo de la página cuando se ve en escritorio: la app queda como una columna centrada */
+html {
+  background: #dfe4dc;
+  scroll-behavior: smooth;
+}
+
+/* "html body" (más específico) para ganarle al "body { margin: 0 }" del preflight de Tailwind */
+html body {
+  max-width: var(--app-max);
+  margin-left: auto;
+  margin-right: auto;
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (min-width: 31rem) {
+  body { box-shadow: 0 0 48px rgba(25, 28, 26, 0.12); }
+}
+
+/* Barras fijas (cabecera, menú inferior, barra de compra) centradas dentro de la columna */
+.app-fixed {
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  max-width: var(--app-max);
+}
+
+/* Zonas seguras en móviles con notch */
+.pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+.pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+
+/* El contenido principal no debe tener márgenes arriba/abajo */
+main > :first-child { margin-top: 0 !important; }
+main > :last-child  { margin-bottom: 0 !important; }
+
+/* Carruseles horizontales sin barra de scroll */
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Foco visible para navegación con teclado */
+:focus-visible {
+  outline: 2px solid #a33d23;
+  outline-offset: 2px;
+}
+
+/* ---------- Toast (aviso temporal) ---------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: var(--toast-bottom);
+  transform: translate(-50%, 0.75rem);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 90;
+  width: max-content;
+  max-width: calc(100vw - 2rem);
+}
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+
+/* ---------- Hoja inferior (pet switcher, perfil, promos, buscador) ---------- */
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(25, 28, 26, 0.45);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 70;
+}
+.sheet-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-inline: auto;
+  max-width: var(--app-max);
+  max-height: 88vh;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 71;
+}
+.sheet-backdrop.is-open { opacity: 1; }
+.sheet-panel.is-open    { transform: translateY(0); }
+
+/* Hoja a pantalla completa (buscador) */
+.sheet-panel.is-full { top: 0; max-height: none; border-radius: 0; }
+
+/* ---------- Pantalla de pedido confirmado ---------- */
+.success-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  overflow-y: auto;
+  margin-inline: auto;
+  max-width: var(--app-max);
+  animation: fade-in 0.35s ease both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pop-in {
+  0%   { transform: scale(0.4); opacity: 0; }
+  70%  { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-6px); }
+  75%      { transform: translateX(6px); }
+}
+.anim-pop   { animation: pop-in 0.5s ease both; }
+.anim-shake { animation: shake 0.35s ease; }
+
+/* Texto de dos líneas con puntos suspensivos */
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Respetar a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

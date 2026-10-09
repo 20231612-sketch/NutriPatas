@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#f7faf5">
+    <title>Detalle de producto | NutriPatas</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Karla:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind-config.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed" data-page="product">
+
+<!-- ============ Cabecera ============ -->
+<header class="app-fixed fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm">
+        <div class="flex items-center gap-space-xs">
+            <button type="button" data-action="back" aria-label="Volver" class="w-11 h-11 -ml-1 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+            </button>
+            <a href="index.html" aria-label="Ir al inicio" class="flex-shrink-0">
+                <img alt="NutriPatas Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZMQxiOatQJ4_hdNb-wTxQKr6L5UC1fmFk_It_SYHZxAwgf95wTj_We8mMBSRnAbM14GMK5wqH16wQE3PDDVHd8HHLTXQqqxljQmPNvzpAYjd9Glg1KMWK_0dRNc1CcXbxdhYwvXWTVhEUxhC0la7eiro5GGE2RjU8EBbDOi-wiPEtnegLxLhDJSKX1MHZ-YY2LyfPqzxiDJenVZyQyTSxMovCsa98C2qiA3Q0gk-J4FY6Qv0017I97A">
+            </a>
+        </div>
+        <h1 class="font-headline-sm text-headline-sm text-on-surface text-center flex-1 truncate px-space-xs">Producto</h1>
+        <div class="flex items-center gap-space-xs">
+            <a href="pago.html" aria-label="Ver carrito" class="relative w-11 h-11 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors">
+                <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+                <span data-cart-badge class="absolute top-1 right-0 min-w-[18px] px-1.5 py-0.5 text-center rounded-full bg-primary-container text-on-primary-container font-label-sm text-[10px] leading-tight font-bold shadow-sm">0</span>
+            </a>
+            <button type="button" data-action="open-profile" aria-label="Perfil de usuario" class="flex-shrink-0">
+                <img alt="Foto de perfil" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAusrjEpcYXczLb40LzJxidYe8Qqo7J9UG_goCYtoy8aBymHVeu6Xsk-G2aWKrSNaFGqCvBJq-wmKdVKtPCRmChL5XLqAWRX_VM5WCeozlmt8mKB8PPv26k-ltly5SM1XQhVGV3_K_k9IJMs3RIM7nFOjd-VRjprH0jX9fQgmxzg1zNut5cJzgh1HnNnxOTd8MmDf2AaBIbjbDYzhXdDL_SrMnlAJGl4EmNJCd-Cxg0LJxsCynAOkzEKA">
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-screen">
+
+    <!-- Producto no encontrado -->
+    <div id="product-missing" class="hidden flex flex-col items-center text-center px-margin-mobile py-24">
+        <span class="material-symbols-outlined text-[64px] text-outline">search_off</span>
+        <h2 class="font-headline-md text-headline-md text-on-surface mt-3">No encontramos ese producto</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mt-1">Puede que el enlace esté incompleto.</p>
+        <a href="index.html" class="mt-6 px-6 py-3 rounded-full bg-primary text-on-primary font-label-lg text-label-lg shadow-md">Volver al inicio</a>
+    </div>
+
+    <div id="product-root" class="flex flex-col w-full pb-32">
+
+        <!-- Galería deslizable -->
+        <section class="relative w-full overflow-hidden bg-surface-container-low" aria-label="Imágenes del producto">
+            <div class="flex w-full overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar" id="gallery-track"></div>
+            <div class="absolute top-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-md shadow-sm">
+                <span class="material-symbols-outlined text-[16px] text-tertiary-container" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span class="font-label-md text-label-md text-on-surface" data-bind="pd-badge">Más vendido</span>
+            </div>
+            <button type="button" id="btn-favorite" aria-label="Guardar en favoritos" aria-pressed="false" class="absolute top-4 right-4 z-10 w-11 h-11 rounded-full bg-surface-container-lowest/90 backdrop-blur-md flex items-center justify-center text-on-surface shadow-sm active:scale-90 transition-transform">
+                <span class="material-symbols-outlined text-[22px] text-on-surface transition-colors" id="fav-icon">favorite</span>
+            </button>
+            <div class="absolute bottom-4 inset-x-0 flex items-center justify-center gap-2 z-10" id="gallery-dots"></div>
+        </section>
+
+        <div class="flex flex-col px-margin-mobile pt-space-lg space-y-space-lg">
+
+            <!-- Encabezado y valoración -->
+            <div class="space-y-space-xs">
+                <div class="flex items-center justify-between gap-2">
+                    <span class="font-label-md text-label-md uppercase tracking-wider text-primary font-bold" data-bind="pd-line">NutriPatas Kitchen • Línea Fresca</span>
+                    <span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold whitespace-nowrap" data-bind="pd-kind">100% Crudo BARF</span>
+                </div>
+                <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface leading-snug" data-bind="pd-title">Cargando producto...</h2>
+                <div class="flex items-center gap-space-xs pt-1 flex-wrap">
+                    <div class="flex items-center text-tertiary-container" id="pd-stars" aria-hidden="true"></div>
+                    <span class="font-label-lg text-label-lg text-on-surface ml-1" data-bind="pd-rating">4.9</span>
+                    <span class="font-body-sm text-body-sm text-outline" data-bind="pd-reviews">(240 opiniones verificadas)</span>
+                </div>
+            </div>
+
+            <!-- Etiquetas -->
+            <div class="flex flex-wrap gap-2" id="pd-chips"></div>
+
+            <!-- Formato -->
+            <div class="space-y-space-sm pt-2">
+                <div class="flex items-center justify-between gap-2" id="format-head">
+                    <span class="font-headline-sm text-headline-sm text-on-surface">Selecciona el Formato</span>
+                    <span class="font-body-sm text-body-sm text-primary font-medium text-right" data-bind="pd-fit">Ideal para tu mascota</span>
+                </div>
+                <div class="grid grid-cols-1 gap-space-sm" id="format-selector"></div>
+            </div>
+
+            <!-- Suscripción -->
+            <div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm space-y-space-sm">
+                <div class="flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary flex-shrink-0">
+                            <span class="material-symbols-outlined text-[22px]">autorenew</span>
+                        </div>
+                        <div>
+                            <div class="font-label-lg text-label-lg text-on-surface" id="sub-label">Plan Entrega Periódica</div>
+                            <div class="font-body-sm text-body-sm text-primary font-semibold">Ahorra 10% adicional siempre</div>
+                        </div>
+                    </div>
+                    <button type="button" id="subscription-toggle" role="switch" aria-checked="false" aria-labelledby="sub-label" class="w-12 h-7 rounded-full bg-surface-container-highest transition-colors relative flex items-center p-0.5 flex-shrink-0">
+                        <div class="w-6 h-6 rounded-full bg-surface-container-lowest shadow-sm transform transition-transform" id="switch-thumb"></div>
+                    </button>
+                </div>
+                <div class="hidden pt-2 space-y-2" id="subscription-frequency">
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">Frecuencia de envío a tu puerta:</p>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center justify-center gap-2 py-2 px-3 rounded-full bg-surface-container text-on-surface font-label-md text-label-md cursor-pointer has-[:checked]:bg-primary-fixed has-[:checked]:text-on-primary-fixed transition-colors">
+                            <input checked class="sr-only" name="freq" type="radio" value="15">
+                            <span>Cada 15 días</span>
+                        </label>
+                        <label class="flex items-center justify-center gap-2 py-2 px-3 rounded-full bg-surface-container text-on-surface font-label-md text-label-md cursor-pointer has-[:checked]:bg-primary-fixed has-[:checked]:text-on-primary-fixed transition-colors">
+                            <input class="sr-only" name="freq" type="radio" value="30">
+                            <span>Cada 30 días</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ingredientes -->
+            <div class="space-y-space-sm">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-headline-sm text-headline-sm text-on-surface">Ingredientes 100% Frescos</h3>
+                    <span class="font-label-sm text-label-sm text-secondary font-bold">Grado Consumo Humano</span>
+                </div>
+                <div class="grid grid-cols-2 gap-space-sm" id="ingredients-grid"></div>
+            </div>
+
+            <!-- Acordeones -->
+            <div class="space-y-space-sm pt-2">
+                <div id="acc-nutrition" class="rounded-2xl bg-surface-container-lowest shadow-sm overflow-hidden transition-all">
+                    <button type="button" data-accordion="nutrition-body" aria-expanded="true" class="w-full p-4 flex items-center justify-between text-left">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[20px] text-secondary">analytics</span>
+                            <span class="font-label-lg text-label-lg text-on-surface">Análisis Garantizado (por 100g)</span>
+                        </div>
+                        <span class="acc-icon material-symbols-outlined text-[20px] text-outline transition-transform duration-300 rotate-180">expand_more</span>
+                    </button>
+                    <div class="px-4 pb-4 space-y-3" id="nutrition-body">
+                        <div class="space-y-2" id="nutrition-bars"></div>
+                        <div class="p-3 rounded-xl bg-surface-container-low text-on-surface">
+                            <p class="font-body-sm text-body-sm text-outline" data-bind="pd-kcal"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl bg-surface-container-lowest shadow-sm overflow-hidden transition-all">
+                    <button type="button" data-accordion="portion-body" aria-expanded="false" class="w-full p-4 flex items-center justify-between text-left">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-[20px] text-primary">scale</span>
+                            <span class="font-label-lg text-label-lg text-on-surface">Guía de Porción Diaria</span>
+                        </div>
+                        <span class="acc-icon material-symbols-outlined text-[20px] text-outline transition-transform duration-300">expand_more</span>
+                    </button>
+                    <div class="px-4 pb-4 hidden space-y-2" id="portion-body">
+                        <p class="font-body-sm text-body-sm text-on-surface" data-bind="pd-portion-intro"></p>
+                        <div class="grid grid-cols-3 gap-2 text-center pt-1" id="portion-grid"></div>
+                        <p class="font-body-sm text-body-sm text-primary font-semibold" data-bind="pd-portion-note"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Relacionados -->
+            <div class="space-y-space-sm">
+                <h3 class="font-headline-sm text-headline-sm text-on-surface" data-bind="pd-related-title">También le encantará</h3>
+                <div class="flex gap-space-sm overflow-x-auto snap-x scroll-px-4 no-scrollbar -mx-margin-mobile px-margin-mobile pb-2" id="related-list"></div>
+            </div>
+
+            <!-- Garantía -->
+            <div class="p-4 rounded-2xl bg-secondary-container/30 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-on-secondary flex-shrink-0">
+                    <span class="material-symbols-outlined text-[24px]">verified</span>
+                </div>
+                <div>
+                    <h4 class="font-label-lg text-label-lg text-on-surface">Validado por Nutricionistas Veterinarios</h4>
+                    <p class="font-body-sm text-body-sm text-secondary">Cumple los estándares internacionales FEDIAF para mascotas de todas las edades.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barra fija de compra -->
+        <div class="app-fixed fixed bottom-0 inset-x-0 z-40 bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_-8px_24px_rgba(45,49,46,0.08)] px-margin-mobile py-3 pb-safe">
+            <div class="max-w-md mx-auto flex items-center justify-between gap-3">
+                <div class="flex items-center bg-surface-container rounded-full p-1 shadow-inner">
+                    <button type="button" id="qty-minus" aria-label="Disminuir cantidad" class="w-9 h-9 rounded-full bg-surface-container-lowest flex items-center justify-center text-on-surface shadow-sm active:scale-90 transition-transform">
+                        <span class="material-symbols-outlined text-[18px]">remove</span>
+                    </button>
+                    <span class="w-8 text-center font-label-lg text-label-lg text-on-surface" id="qty-val" aria-live="polite">1</span>
+                    <button type="button" id="qty-plus" aria-label="Aumentar cantidad" class="w-9 h-9 rounded-full bg-surface-container-lowest flex items-center justify-center text-on-surface shadow-sm active:scale-90 transition-transform">
+                        <span class="material-symbols-outlined text-[18px]">add</span>
+                    </button>
+                </div>
+                <div class="flex items-center gap-3 flex-1 justify-end">
+                    <div class="text-right">
+                        <span class="font-body-sm text-body-sm text-outline block leading-none">Total</span>
+                        <span class="font-headline-sm text-headline-sm text-primary leading-tight font-extrabold" data-bind="pd-total">$0.00</span>
+                    </div>
+                    <button type="button" id="btn-add-cart" class="flex-1 max-w-[200px] h-12 rounded-full bg-primary-container text-on-primary flex items-center justify-center gap-2 font-label-lg text-label-lg shadow-md hover:bg-primary active:scale-95 transition-all">
+                        <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+                        <span>Añadir</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

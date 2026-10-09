@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#f7faf5">
+    <meta name="description" content="NutriPatas: nutrición natural y a medida para tu mascota. Sitio demostrativo del curso Modelamiento Predictivo de Datos.">
+    <title>NutriPatas | Inicio</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Karla:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind-config.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed" data-page="home">
+
+<!-- ============ Cabecera ============ -->
+<header class="app-fixed fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm">
+        <div class="flex items-center gap-space-sm min-w-0">
+            <img alt="NutriPatas Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZMQxiOatQJ4_hdNb-wTxQKr6L5UC1fmFk_It_SYHZxAwgf95wTj_We8mMBSRnAbM14GMK5wqH16wQE3PDDVHd8HHLTXQqqxljQmPNvzpAYjd9Glg1KMWK_0dRNc1CcXbxdhYwvXWTVhEUxhC0la7eiro5GGE2RjU8EBbDOi-wiPEtnegLxLhDJSKX1MHZ-YY2LyfPqzxiDJenVZyQyTSxMovCsa98C2qiA3Q0gk-J4FY6Qv0017I97A">
+            <div class="flex flex-col min-w-0">
+                <span class="font-headline-sm text-headline-sm text-primary tracking-tight truncate leading-none">NutriPatas</span>
+                <span class="font-label-sm text-label-sm text-on-surface-variant truncate">Inicio</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-space-xs">
+            <button type="button" data-action="open-search" aria-label="Buscar en NutriPatas" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors">
+                <span class="material-symbols-outlined text-[22px]">search</span>
+            </button>
+            <button type="button" data-action="open-pets" aria-label="Cambiar mascota activa" class="hidden xs:flex items-center gap-1.5 py-1 px-2.5 rounded-full bg-secondary-container/60 text-on-secondary-container hover:bg-secondary-container transition-colors">
+                <span class="material-symbols-outlined text-[16px]">pets</span>
+                <span class="font-label-sm text-label-sm font-bold" data-bind="pet-name">Rocky</span>
+            </button>
+            <button type="button" data-action="open-profile" aria-label="Perfil de usuario" class="w-11 h-11 rounded-full flex items-center justify-center p-0.5 hover:ring-2 hover:ring-primary/20 transition-all">
+                <img alt="Foto de perfil" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAusrjEpcYXczLb40LzJxidYe8Qqo7J9UG_goCYtoy8aBymHVeu6Xsk-G2aWKrSNaFGqCvBJq-wmKdVKtPCRmChL5XLqAWRX_VM5WCeozlmt8mKB8PPv26k-ltly5SM1XQhVGV3_K_k9IJMs3RIM7nFOjd-VRjprH0jX9fQgmxzg1zNut5cJzgh1HnNnxOTd8MmDf2AaBIbjbDYzhXdDL_SrMnlAJGl4EmNJCd-Cxg0LJxsCynAOkzEKA">
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="flex flex-col relative w-full pt-16 pb-28 bg-surface min-h-screen">
+    <h1 class="sr-only">NutriPatas: nutrición natural a medida para tu mascota</h1>
+    <div class="flex flex-col w-full pb-6 space-y-5">
+
+        <!-- Mascota activa -->
+        <section class="px-margin-mobile pt-5" aria-label="Mascota activa">
+            <div class="bg-surface-container rounded-lg p-3.5 shadow-sm flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="relative flex-shrink-0" id="pet-avatar"></div>
+                    <div class="flex flex-col min-w-0">
+                        <div class="flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
+                            <span class="font-headline-sm text-headline-sm text-on-surface truncate max-w-full" data-bind="pet-name">Rocky</span>
+                            <span class="bg-secondary-container/70 text-on-secondary-container font-label-sm text-label-sm px-2 py-0.5 rounded-full whitespace-nowrap max-w-full truncate" data-bind="pet-diet">BARF &amp; Grain Free</span>
+                        </div>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2" data-bind="pet-meta">Golden Retriever • 3 años • 28 kg</p>
+                    </div>
+                </div>
+                <button type="button" data-action="open-pets" aria-label="Cambiar perfil de mascota" class="flex-shrink-0 flex items-center gap-1 bg-surface-container-lowest text-primary hover:bg-primary-fixed py-2 px-3 rounded-full font-label-sm text-label-sm shadow-sm transition-all active:scale-95">
+                    <span>Cambiar</span>
+                    <span class="material-symbols-outlined text-[16px]">swap_horiz</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Carrusel de promociones -->
+        <section class="relative w-full" aria-label="Promociones">
+            <div class="flex overflow-x-auto snap-x snap-mandatory scroll-smooth px-margin-mobile gap-3 no-scrollbar pb-1" id="promo-carousel">
+                <!-- Banner 1: Oferta Flash BARF -->
+                <div class="promo-slide snap-center shrink-0 w-[88%] max-w-[340px] bg-primary text-on-primary rounded-lg p-4 shadow-md relative overflow-hidden flex flex-col justify-between min-h-[170px]">
+                    <div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-primary-container/40 pointer-events-none"></div>
+                    <div class="relative z-10 flex items-start justify-between gap-2">
+                        <span class="bg-surface-container-lowest/20 backdrop-blur-sm text-on-primary font-label-sm text-label-sm px-2.5 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">bolt</span> Flash de la Semana
+                        </span>
+                        <span class="font-display-lg text-[22px] leading-tight font-extrabold text-tertiary-fixed">-25%</span>
+                    </div>
+                    <div class="relative z-10 my-2">
+                        <h2 class="font-headline-sm text-headline-sm text-on-primary leading-snug">Menús BARF Pollo &amp; Res Orgánica</h2>
+                        <p class="font-body-sm text-body-sm text-primary-fixed mt-0.5">Ingredientes 100% biológicos para una digestión feliz</p>
+                    </div>
+                    <div class="relative z-10 flex items-center justify-between gap-2 pt-1">
+                        <button type="button" data-copy="HUELLITAS25" aria-label="Copiar código HUELLITAS25" class="bg-on-primary/10 px-2.5 py-1 rounded-full flex items-center gap-1.5">
+                            <span class="font-label-sm text-label-sm font-mono tracking-wider text-primary-fixed">HUELLITAS25</span>
+                            <span class="material-symbols-outlined text-[13px] text-primary-fixed">content_copy</span>
+                        </button>
+                        <button type="button" data-coupon="HUELLITAS25" class="bg-surface-container-lowest text-primary font-label-sm text-label-sm px-3.5 py-1.5 rounded-full shadow-sm hover:bg-surface-container transition-all active:scale-95">Aprovechar</button>
+                    </div>
+                </div>
+                <!-- Banner 2: Cupón primer pedido -->
+                <div class="promo-slide snap-center shrink-0 w-[88%] max-w-[340px] bg-secondary text-on-secondary rounded-lg p-4 shadow-md relative overflow-hidden flex flex-col justify-between min-h-[170px]">
+                    <div class="absolute -right-8 -top-8 w-36 h-36 rounded-full bg-secondary-container/20 pointer-events-none"></div>
+                    <div class="relative z-10 flex items-start justify-between gap-2">
+                        <span class="bg-surface-container-lowest/20 backdrop-blur-sm text-on-secondary font-label-sm text-label-sm px-2.5 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">card_giftcard</span> Bienvenida
+                        </span>
+                        <span class="bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[11px] px-2 py-0.5 rounded-full font-bold">GRATIS</span>
+                    </div>
+                    <div class="relative z-10 my-2">
+                        <h2 class="font-headline-sm text-headline-sm text-on-secondary leading-snug">Envío GRATIS + Snack Dental</h2>
+                        <p class="font-body-sm text-body-sm text-secondary-fixed mt-0.5">En tu primera orden con suscripción flexible</p>
+                    </div>
+                    <div class="relative z-10 flex items-center justify-between gap-2 pt-1">
+                        <span class="font-label-sm text-label-sm text-secondary-fixed">Sin mínimo de compra</span>
+                        <button type="button" data-coupon="BIENVENIDA" class="bg-surface-container-lowest text-secondary font-label-sm text-label-sm px-3.5 py-1.5 rounded-full shadow-sm hover:bg-surface-container transition-all active:scale-95">Reclamar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center items-center gap-1.5 mt-2" id="promo-dots" aria-hidden="true"></div>
+        </section>
+
+        <!-- Categorías -->
+        <section class="w-full" aria-label="Categorías">
+            <div class="px-margin-mobile flex items-center justify-between mb-3">
+                <h3 class="font-headline-sm text-headline-sm text-on-surface">Explorar Categorías</h3>
+                <button type="button" id="btn-catalog" class="font-label-sm text-label-sm text-primary font-bold">Ver catálogo</button>
+            </div>
+            <div class="flex overflow-x-auto px-margin-mobile gap-3.5 no-scrollbar py-1">
+                <button type="button" data-category="barf" aria-pressed="false" class="flex flex-col items-center gap-1.5 min-w-[72px] group">
+                    <div class="cat-circle relative w-16 h-16 rounded-full bg-tertiary-fixed flex items-center justify-center text-on-tertiary-fixed shadow-sm group-hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined text-[28px]">restaurant</span>
+                        <span class="absolute -top-1 -right-1 bg-primary text-on-primary font-label-sm text-[9px] px-1.5 py-0.5 rounded-full font-bold shadow-sm">Top</span>
+                    </div>
+                    <span class="font-label-sm text-label-sm text-center text-on-surface leading-tight">BARF &amp; Natural</span>
+                </button>
+                <button type="button" data-category="snacks" aria-pressed="false" class="flex flex-col items-center gap-1.5 min-w-[72px] group">
+                    <div class="cat-circle w-16 h-16 rounded-full bg-tertiary-container/30 text-tertiary flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">cookie</span>
+                    </div>
+                    <span class="font-label-sm text-label-sm text-center text-on-surface leading-tight">Snacks &amp; Premios</span>
+                </button>
+                <button type="button" data-category="seco" aria-pressed="false" class="flex flex-col items-center gap-1.5 min-w-[72px] group">
+                    <div class="cat-circle w-16 h-16 rounded-full bg-secondary-container/80 text-secondary flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined text-[28px]">grain</span>
+                    </div>
+                    <span class="font-label-sm text-label-sm text-center text-on-surface leading-tight">Alimento Seco</span>
+                </button>
+                <button type="button" data-category="humeda" aria-pressed="false" class="flex flex-col items-center gap-1.5 min-w-[72px] group">
+                    <div class="cat-circle w-16 h-16 rounded-full bg-primary-fixed text-primary flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined text-[28px]">soup_kitchen</span>
+                    </div>
+                    <span class="font-label-sm text-label-sm text-center text-on-surface leading-tight">Comida Húmeda</span>
+                </button>
+                <button type="button" data-category="suplementos" aria-pressed="false" class="flex flex-col items-center gap-1.5 min-w-[72px] group">
+                    <div class="cat-circle w-16 h-16 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined text-[28px]">medication</span>
+                    </div>
+                    <span class="font-label-sm text-label-sm text-center text-on-surface leading-tight">Suplementos</span>
+                </button>
+                <button type="button" data-category="ofertas" aria-pressed="false" class="flex flex-col items-center gap-1.5 min-w-[72px] group">
+                    <div class="cat-circle w-16 h-16 rounded-full bg-error-container text-on-error-container flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+                    </div>
+                    <span class="font-label-sm text-label-sm text-center text-on-surface leading-tight">Ofertas Flash</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Huellitas Club -->
+        <section class="px-margin-mobile" aria-label="Huellitas Club">
+            <div class="bg-gradient-to-r from-tertiary-fixed via-tertiary-container/30 to-surface-container rounded-lg p-3.5 shadow-sm flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-11 h-11 rounded-full bg-surface-container-lowest flex items-center justify-center shadow-sm text-tertiary flex-shrink-0">
+                        <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">stars</span>
+                    </div>
+                    <div class="flex flex-col min-w-0">
+                        <div class="flex flex-wrap items-center gap-x-1.5">
+                            <span class="font-label-sm text-label-sm uppercase tracking-wider text-tertiary font-bold">Huellitas Club</span>
+                            <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                            <span class="font-label-sm text-label-sm text-on-surface-variant" data-bind="club-level">Nivel Gourmet</span>
+                        </div>
+                        <p class="font-headline-sm text-headline-sm text-on-surface mt-0.5">
+                            <span class="font-extrabold text-tertiary" data-bind="club-points">450</span> pts acumulados
+                        </p>
+                    </div>
+                </div>
+                <button type="button" data-action="open-promos" class="bg-surface-container-lowest text-tertiary hover:bg-surface-container font-label-sm text-label-sm px-3.5 py-2 rounded-full shadow-sm flex items-center gap-1 transition-all active:scale-95 flex-shrink-0">
+                    <span>Premios</span>
+                    <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Lista de productos (recomendados o filtrados por categoría) -->
+        <section id="product-section" class="px-margin-mobile space-y-3 scroll-mt-20" aria-live="polite">
+            <div class="flex items-end justify-between gap-3">
+                <div class="min-w-0">
+                    <div class="flex items-center gap-1.5 text-secondary">
+                        <span class="material-symbols-outlined text-[18px]">verified</span>
+                        <span class="font-label-sm text-label-sm uppercase tracking-wide" data-bind="list-kicker">Fórmula a medida</span>
+                    </div>
+                    <h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mt-0.5" data-bind="list-title">Especial para Rocky</h3>
+                </div>
+                <div class="text-right flex-shrink-0">
+                    <span class="font-body-sm text-body-sm text-on-surface-variant block" data-bind="list-count">3 opciones</span>
+                    <button type="button" id="btn-clear-filter" class="hidden font-label-sm text-label-sm text-primary font-bold">Quitar filtro</button>
+                </div>
+            </div>
+            <div class="space-y-3.5" id="product-list"></div>
+        </section>
+
+        <!-- Compromiso de calidad -->
+        <section class="px-margin-mobile pt-1">
+            <div class="bg-surface-container-low rounded-lg p-4 flex items-center gap-3.5">
+                <div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0">
+                    <span class="material-symbols-outlined text-[22px]">health_and_safety</span>
+                </div>
+                <div class="min-w-0">
+                    <h5 class="font-headline-sm text-headline-sm text-on-surface">Nutrición validada por veterinarios</h5>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Recetas formuladas sin subproductos ni conservantes químicos.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- ============ Menú inferior ============ -->
+<nav class="app-fixed fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_12px_32px_-6px_rgba(231,111,81,0.12),0_4px_12px_-2px_rgba(45,49,46,0.05)]" aria-label="Navegación principal">
+    <div class="flex items-center justify-around h-16 px-space-xs max-w-lg mx-auto">
+        <a aria-current="page" href="index.html" class="flex flex-col items-center justify-center gap-0.5 min-w-[58px] min-h-[44px] transition-colors text-primary font-bold">
+            <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">home</span>
+            <span class="font-label-sm text-label-sm">Inicio</span>
+        </a>
+        <a href="cliente.html" class="flex flex-col items-center justify-center gap-0.5 min-w-[58px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[24px]">pets</span>
+            <span class="font-label-sm text-label-sm">Mi Mascota</span>
+        </a>
+        <button type="button" data-action="open-promos" class="relative flex flex-col items-center justify-center gap-0.5 min-w-[58px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors">
+            <div class="relative flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">loyalty</span>
+                <span class="absolute -top-1 -right-2 px-1 py-0.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label-sm text-[9px] leading-tight font-extrabold">CLUB</span>
+            </div>
+            <span class="font-label-sm text-label-sm">Promos</span>
+        </button>
+        <a href="pago.html" class="relative flex flex-col items-center justify-center gap-0.5 min-w-[58px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors">
+            <div class="relative flex items-center justify-center">
+                <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+                <span data-cart-badge class="absolute -top-1 -right-2 min-w-[18px] px-1.5 py-0.5 text-center rounded-full bg-primary-container text-on-primary-container font-label-sm text-[10px] leading-tight font-bold shadow-sm">0</span>
+            </div>
+            <span class="font-label-sm text-label-sm">Carrito</span>
+        </a>
+        <button type="button" data-action="open-profile" class="flex flex-col items-center justify-center gap-0.5 min-w-[58px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors">
+            <span class="material-symbols-outlined text-[24px]">person</span>
+            <span class="font-label-sm text-label-sm">Perfil</span>
+        </button>
+    </div>
+</nav>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#f7faf5">
+    <title>Proceso de pago | NutriPatas</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Karla:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind-config.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed" data-page="checkout">
+
+<!-- ============ Cabecera ============ -->
+<header class="app-fixed fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm">
+        <div class="flex items-center gap-space-xs">
+            <button type="button" data-action="back" aria-label="Volver" class="w-11 h-11 -ml-1 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+            </button>
+            <a href="index.html" aria-label="Ir al inicio" class="flex-shrink-0">
+                <img alt="NutriPatas Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZMQxiOatQJ4_hdNb-wTxQKr6L5UC1fmFk_It_SYHZxAwgf95wTj_We8mMBSRnAbM14GMK5wqH16wQE3PDDVHd8HHLTXQqqxljQmPNvzpAYjd9Glg1KMWK_0dRNc1CcXbxdhYwvXWTVhEUxhC0la7eiro5GGE2RjU8EBbDOi-wiPEtnegLxLhDJSKX1MHZ-YY2LyfPqzxiDJenVZyQyTSxMovCsa98C2qiA3Q0gk-J4FY6Qv0017I97A">
+            </a>
+        </div>
+        <h1 class="font-headline-sm text-headline-sm text-on-surface text-center flex-1 truncate px-space-xs">Proceso de pago</h1>
+        <div class="flex items-center gap-space-xs">
+            <button type="button" data-action="open-profile" aria-label="Perfil de usuario" class="flex-shrink-0">
+                <img alt="Foto de perfil" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAusrjEpcYXczLb40LzJxidYe8Qqo7J9UG_goCYtoy8aBymHVeu6Xsk-G2aWKrSNaFGqCvBJq-wmKdVKtPCRmChL5XLqAWRX_VM5WCeozlmt8mKB8PPv26k-ltly5SM1XQhVGV3_K_k9IJMs3RIM7nFOjd-VRjprH0jX9fQgmxzg1zNut5cJzgh1HnNnxOTd8MmDf2AaBIbjbDYzhXdDL_SrMnlAJGl4EmNJCd-Cxg0LJxsCynAOkzEKA">
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-screen">
+
+    <!-- Carrito vacío -->
+    <div id="empty-cart" class="hidden flex flex-col items-center text-center px-margin-mobile py-24">
+        <div class="w-24 h-24 rounded-full bg-secondary-container text-secondary flex items-center justify-center">
+            <span class="material-symbols-outlined text-[48px]">shopping_bag</span>
+        </div>
+        <h2 class="font-headline-md text-headline-md text-on-surface mt-space-lg">Tu carrito está vacío</h2>
+        <p class="font-body-md text-body-md text-on-surface-variant mt-1">Agrega el menú ideal para tu mascota y vuelve aquí para pagar.</p>
+        <a href="index.html" class="mt-space-lg px-6 py-3.5 rounded-full bg-primary text-on-primary font-label-lg text-label-lg shadow-md active:scale-95 transition-all">Explorar productos</a>
+    </div>
+
+    <div id="checkout-content" class="flex flex-col w-full pb-10 px-margin-mobile">
+
+        <!-- Pedido para la mascota -->
+        <div class="mt-space-sm mb-space-md p-space-md rounded-xl bg-secondary-container text-on-secondary-container shadow-sm flex items-center justify-between gap-space-sm">
+            <div class="flex items-center gap-space-sm min-w-0">
+                <div id="order-avatar" class="flex-shrink-0"></div>
+                <div class="min-w-0">
+                    <div class="flex items-center gap-space-xs">
+                        <span class="font-headline-sm text-headline-sm truncate">Pedido para <span data-bind="pet-name">Rocky</span></span>
+                        <span class="material-symbols-outlined text-[18px] text-secondary">pets</span>
+                    </div>
+                    <p class="font-body-sm text-body-sm opacity-90 truncate" data-bind="pet-detail"></p>
+                </div>
+            </div>
+            <span class="inline-flex items-center px-space-xs py-1 rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm whitespace-nowrap" data-bind="items-count">2 ítems</span>
+        </div>
+
+        <!-- Productos -->
+        <div class="mb-space-lg flex flex-col gap-space-xs">
+            <div class="flex items-center justify-between mb-1">
+                <h2 class="font-headline-sm text-headline-sm text-on-surface">Productos frescos seleccionados</h2>
+                <button type="button" id="btn-edit-items" class="font-label-md text-label-md text-primary hover:underline">Modificar</button>
+            </div>
+            <div class="flex flex-col gap-space-xs" id="cart-items"></div>
+        </div>
+
+        <!-- Cupón -->
+        <div class="mb-space-lg flex flex-col gap-space-xs">
+            <h2 class="font-headline-sm text-headline-sm text-on-surface">Cupón de descuento</h2>
+            <form id="coupon-form" class="flex items-center gap-space-xs" novalidate>
+                <div class="relative flex-1 flex items-center">
+                    <span class="material-symbols-outlined absolute left-3 text-outline text-[20px]">sell</span>
+                    <input id="coupon-input" type="text" autocomplete="off" aria-label="Código de cupón" placeholder="Ej. HUELLITAS25" maxlength="20"
+                           class="w-full bg-surface-container-lowest text-on-surface rounded-full pl-10 pr-4 py-3 font-body-md text-body-md uppercase tracking-wider shadow-sm outline-none focus:shadow-md transition-all read-only:bg-secondary-container/40">
+                </div>
+                <button type="submit" id="coupon-btn" class="px-5 py-3 rounded-full bg-secondary text-on-secondary font-label-lg text-label-lg shadow-sm active:scale-95 transition-all">Aplicar</button>
+            </form>
+            <p id="coupon-msg" class="font-body-sm text-body-sm text-on-surface-variant" aria-live="polite"></p>
+        </div>
+
+        <!-- Tipo de entrega -->
+        <div class="mb-space-lg flex flex-col gap-space-sm">
+            <div class="flex items-center justify-between gap-2">
+                <h2 class="font-headline-sm text-headline-sm text-on-surface">Tipo de Entrega</h2>
+                <span class="font-body-sm text-body-sm text-secondary flex items-center gap-1 font-semibold text-right">
+                    <span class="material-symbols-outlined text-[16px]">ac_unit</span> Cadena de frío asegurada
+                </span>
+            </div>
+
+            <!-- Express -->
+            <div class="delivery-option relative rounded-lg bg-surface-container-lowest shadow-sm transition-all has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary" data-method="express">
+                <label class="block p-space-md cursor-pointer">
+                    <input class="sr-only" name="delivery_method" type="radio" value="express">
+                    <div class="flex items-start justify-between gap-space-sm">
+                        <div class="flex items-start gap-space-sm">
+                            <div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-on-primary-fixed flex-shrink-0">
+                                <span class="material-symbols-outlined text-[22px]">bolt</span>
+                            </div>
+                            <div>
+                                <span class="font-label-lg text-label-lg text-on-surface">Envío Express Frío</span>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Llega hoy en menos de 3 horas directo a tu congelador</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-end gap-1 flex-shrink-0">
+                            <span class="font-label-lg text-label-lg text-on-surface" data-bind="express-fee">+$4.99</span>
+                            <span class="check-indicator text-primary invisible"><span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">check_circle</span></span>
+                        </div>
+                    </div>
+                </label>
+            </div>
+
+            <!-- Programada -->
+            <div class="delivery-option relative rounded-lg bg-surface-container-lowest shadow-sm transition-all has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary" data-method="scheduled">
+                <label class="block p-space-md cursor-pointer">
+                    <input class="sr-only" name="delivery_method" type="radio" value="scheduled">
+                    <div class="flex items-start justify-between gap-space-sm">
+                        <div class="flex items-start gap-space-sm">
+                            <div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface flex-shrink-0">
+                                <span class="material-symbols-outlined text-[22px]">calendar_today</span>
+                            </div>
+                            <div>
+                                <span class="font-label-lg text-label-lg text-on-surface">Entrega Programada</span>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Elige el día y franja ideal para recibir la comida</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-end gap-1 flex-shrink-0">
+                            <span class="font-label-lg text-label-lg text-secondary">Gratis</span>
+                            <span class="check-indicator text-primary invisible"><span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">check_circle</span></span>
+                        </div>
+                    </div>
+                </label>
+                <div class="delivery-sub hidden px-space-md pb-space-md flex flex-col gap-space-sm">
+                    <div id="date-chips" class="flex items-center gap-space-xs overflow-x-auto pb-1 no-scrollbar"></div>
+                    <div class="grid grid-cols-2 gap-space-xs">
+                        <label class="p-space-xs rounded bg-surface-container text-center cursor-pointer block has-[:checked]:bg-primary-fixed has-[:checked]:ring-2 has-[:checked]:ring-primary">
+                            <input class="sr-only" name="delivery_slot" type="radio" value="10-13">
+                            <span class="font-label-sm text-label-sm block text-on-surface">10:00 - 13:00 hrs</span>
+                            <span class="font-body-sm text-on-surface-variant text-[11px]">Mañana</span>
+                        </label>
+                        <label class="p-space-xs rounded bg-surface-container text-center cursor-pointer block has-[:checked]:bg-primary-fixed has-[:checked]:ring-2 has-[:checked]:ring-primary">
+                            <input class="sr-only" name="delivery_slot" type="radio" value="15-19">
+                            <span class="font-label-sm text-label-sm block text-on-surface">15:00 - 19:00 hrs</span>
+                            <span class="font-body-sm text-on-surface-variant text-[11px]">Tarde</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suscripción -->
+            <div class="delivery-option relative mt-2 rounded-lg bg-surface-container-lowest shadow-sm transition-all has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary" data-method="recurring">
+                <div class="absolute -top-3 left-4 px-space-xs py-0.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm shadow-sm flex items-center gap-1 z-10">
+                    <span class="material-symbols-outlined text-[14px]">auto_mode</span> AHORRA 10% CADA PEDIDO
+                </div>
+                <label class="block p-space-md pt-5 cursor-pointer">
+                    <input class="sr-only" name="delivery_method" type="radio" value="recurring">
+                    <div class="flex items-start justify-between gap-space-sm">
+                        <div class="flex items-start gap-space-sm">
+                            <div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container flex-shrink-0">
+                                <span class="material-symbols-outlined text-[22px]">all_inclusive</span>
+                            </div>
+                            <div>
+                                <span class="font-label-lg text-label-lg text-on-surface">Suscripción NutriPatas</span>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                                    Entregar automáticamente cada <strong><span data-bind="freq">15</span> días</strong>. Cancela o pausa cuando quieras con un toque.
+                                </p>
+                                <div class="flex items-center gap-space-xs mt-2">
+                                    <span class="inline-flex items-center text-[12px] font-label-md text-secondary bg-surface-container px-2 py-0.5 rounded-full">
+                                        Próxima entrega: <span class="ml-1" data-bind="next-delivery"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-end gap-1 flex-shrink-0">
+                            <span class="font-label-lg text-label-lg text-secondary">Gratis</span>
+                            <span class="font-body-sm text-primary text-[12px] whitespace-nowrap">Ahorras <span data-bind="sub-saving"></span></span>
+                            <span class="check-indicator text-primary invisible"><span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">check_circle</span></span>
+                        </div>
+                    </div>
+                </label>
+                <div class="delivery-sub hidden px-space-md pb-space-md">
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mb-1">Frecuencia de entrega:</p>
+                    <div class="grid grid-cols-2 gap-space-xs">
+                        <label class="py-2 px-3 rounded-full bg-surface-container text-center font-label-md text-label-md cursor-pointer has-[:checked]:bg-primary-fixed has-[:checked]:text-on-primary-fixed has-[:checked]:ring-2 has-[:checked]:ring-primary transition-colors">
+                            <input class="sr-only" name="freq" type="radio" value="15">Cada 15 días
+                        </label>
+                        <label class="py-2 px-3 rounded-full bg-surface-container text-center font-label-md text-label-md cursor-pointer has-[:checked]:bg-primary-fixed has-[:checked]:text-on-primary-fixed has-[:checked]:ring-2 has-[:checked]:ring-primary transition-colors">
+                            <input class="sr-only" name="freq" type="radio" value="30">Cada 30 días
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dirección -->
+        <div class="mb-space-lg flex flex-col gap-space-sm">
+            <div class="flex items-center justify-between">
+                <h2 class="font-headline-sm text-headline-sm text-on-surface">Dirección de Entrega</h2>
+                <button type="button" id="btn-change-address" class="font-label-md text-label-md text-primary hover:underline">Cambiar</button>
+            </div>
+            <div class="rounded-xl overflow-hidden bg-surface-container-lowest shadow-sm">
+                <div class="relative w-full h-32 bg-surface-container">
+                    <div id="map-preview" class="w-full h-full bg-cover bg-center" role="img" aria-label="Mapa de la dirección de entrega" data-location="Av. Las Palmeras 450, Miraflores, Lima" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDq-9YJtIVpv4jlYpubrZbpViZQDBB0ZinhASrrMSxIH3OwhUJX8cQSZand6YmAjs4gjaDnB8I8AY_IEgKTyuyyQ1lvb1fUM6CTjJD4nQ9Jd31Refe7Kr0qNo-z290tQbuiGXZERQ9PH2CP68f2dS0bIXpLa-fexqXCADqtEAVZSGVf5vpW11d2TCxOKawtJXIaCICjJXuLAjsrEdDsghj0k678Ls-OhbBY3khOe2-22AM_w03ogTJc2A');"></div>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-lg transform -translate-y-2 animate-bounce">
+                            <span class="material-symbols-outlined text-[22px]">pets</span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-2 left-2 px-space-xs py-0.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm shadow-sm flex items-center gap-1">
+                        <span class="w-2 h-2 rounded-full bg-secondary inline-block"></span> Zona de cobertura express activa
+                    </div>
+                </div>
+                <div class="p-space-md">
+                    <div class="flex items-start justify-between gap-space-sm">
+                        <div class="flex items-start gap-space-xs min-w-0">
+                            <span id="addr-icon" class="material-symbols-outlined text-primary text-[22px] flex-shrink-0 mt-0.5">home</span>
+                            <div class="min-w-0">
+                                <p class="font-label-lg text-label-lg text-on-surface" data-bind="addr-label">Casa Principal</p>
+                                <p class="font-body-md text-body-md text-on-surface-variant" data-bind="addr-line1"></p>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant" data-bind="addr-line2"></p>
+                            </div>
+                        </div>
+                        <span class="px-space-xs py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm whitespace-nowrap">Predeterminada</span>
+                    </div>
+                    <div class="mt-space-md bg-surface-container-low p-space-sm rounded">
+                        <label for="delivery-notes" class="font-label-sm text-label-sm text-on-surface-variant mb-1 flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">delivery_dining</span> Instrucciones para el repartidor:
+                        </label>
+                        <div class="flex items-center gap-space-xs bg-surface-container-lowest px-space-sm py-2 rounded">
+                            <input id="delivery-notes" class="w-full bg-transparent text-on-surface font-body-sm text-body-sm focus:outline-none placeholder:text-outline" placeholder="Añadir notas de entrega..." type="text" maxlength="140" autocomplete="off">
+                            <span class="material-symbols-outlined text-outline text-[18px]">edit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Puntos Huellitas Club -->
+        <div class="mb-space-lg p-space-md rounded-xl bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-between gap-space-sm shadow-sm">
+            <div class="flex items-center gap-space-sm min-w-0">
+                <div class="w-10 h-10 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center flex-shrink-0">
+                    <span class="material-symbols-outlined text-[20px]">military_tech</span>
+                </div>
+                <div class="min-w-0">
+                    <p class="font-label-lg text-label-lg" data-bind="points-title"></p>
+                    <p class="font-body-sm text-body-sm opacity-90" data-bind="points-sub"></p>
+                </div>
+            </div>
+            <button type="button" id="btn-points" class="flex-shrink-0 px-3.5 py-2 rounded-full bg-surface-container-lowest text-tertiary font-label-sm text-label-sm shadow-sm hover:bg-surface-container active:scale-95 transition-all">Quitar</button>
+        </div>
+
+        <!-- Método de pago -->
+        <div class="mb-space-lg flex flex-col gap-space-sm">
+            <div class="flex items-center justify-between">
+                <h2 class="font-headline-sm text-headline-sm text-on-surface">Método de Pago</h2>
+                <button type="button" id="btn-new-card" class="font-label-md text-label-md text-primary hover:underline">+ Nueva tarjeta</button>
+            </div>
+            <label class="payment-option p-space-md rounded-lg bg-surface-container-lowest shadow-sm flex items-center justify-between cursor-pointer transition-all has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary">
+                <div class="flex items-center gap-space-sm">
+                    <input class="sr-only" name="payment_method" type="radio" value="card">
+                    <div class="w-10 h-8 rounded bg-surface-container-high flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-primary text-[20px]">credit_card</span></div>
+                    <div>
+                        <span class="font-label-lg text-label-lg text-on-surface block">Visa •••• 8821</span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant block">Expira 08/27 • Débito</span>
+                    </div>
+                </div>
+                <span class="pay-dot w-6 h-6 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0"><span class="pay-check material-symbols-outlined text-[16px] hidden">check</span></span>
+            </label>
+            <label class="payment-option p-space-md rounded-lg bg-surface-container-lowest shadow-sm flex items-center justify-between cursor-pointer transition-all has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary">
+                <div class="flex items-center gap-space-sm">
+                    <input class="sr-only" name="payment_method" type="radio" value="wallet">
+                    <div class="w-10 h-8 rounded bg-surface-container-high flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-surface text-[20px]">account_balance_wallet</span></div>
+                    <div>
+                        <span class="font-label-lg text-label-lg text-on-surface block">Apple Pay / Google Wallet</span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant block">Pago biométrico de 1 toque</span>
+                    </div>
+                </div>
+                <span class="pay-dot w-6 h-6 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0"><span class="pay-check material-symbols-outlined text-[16px] hidden">check</span></span>
+            </label>
+            <label class="payment-option p-space-md rounded-lg bg-surface-container-lowest shadow-sm flex items-center justify-between cursor-pointer transition-all has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-primary">
+                <div class="flex items-center gap-space-sm">
+                    <input class="sr-only" name="payment_method" type="radio" value="cash">
+                    <div class="w-10 h-8 rounded bg-surface-container-high flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-on-surface text-[20px]">payments</span></div>
+                    <div>
+                        <span class="font-label-lg text-label-lg text-on-surface block">Efectivo contra entrega</span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant block">Pagas al recibir tu paquete frío</span>
+                    </div>
+                </div>
+                <span class="pay-dot w-6 h-6 rounded-full bg-surface-container flex items-center justify-center flex-shrink-0"><span class="pay-check material-symbols-outlined text-[16px] hidden">check</span></span>
+            </label>
+        </div>
+
+        <!-- Desglose -->
+        <div class="mb-space-xl p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs shadow-sm">
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">Desglose de Pago</h3>
+            <div id="breakdown-rows"></div>
+            <div class="h-px bg-surface-container-highest my-space-xs"></div>
+            <div class="flex justify-between items-baseline pt-1 gap-2">
+                <div>
+                    <span class="font-headline-sm text-headline-sm text-on-surface block">Total a pagar</span>
+                    <span class="font-body-sm text-body-sm text-on-surface-variant">Impuestos y conservación incluidos</span>
+                </div>
+                <div class="text-right">
+                    <span class="font-display-lg text-display-lg text-primary leading-none" data-bind="total">$0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirmar -->
+        <div class="sticky bottom-0 z-20 -mx-margin-mobile px-margin-mobile pt-space-sm pb-space-sm bg-surface/95 backdrop-blur-md shadow-[0_-8px_24px_rgba(45,49,46,0.08)]">
+            <button type="button" id="btn-confirm" class="w-full py-4 px-space-lg rounded-full bg-primary-container text-on-primary font-headline-sm text-headline-sm flex items-center justify-between shadow-xl active:scale-[0.98] transition-transform disabled:opacity-90">
+                <div class="flex items-center gap-space-xs">
+                    <span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+                    <span>Confirmar Pedido</span>
+                </div>
+                <div class="flex items-center gap-space-xs">
+                    <span class="text-[20px] font-bold" data-bind="total">$0.00</span>
+                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                </div>
+            </button>
+            <p class="text-center font-body-sm text-body-sm text-on-surface-variant mt-2 flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-[16px] text-secondary">lock</span> Compra 100% segura • Garantía de frescura NutriPatas
+            </p>
+        </div>
+    </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

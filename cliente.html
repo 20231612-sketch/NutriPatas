@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#f7faf5">
+    <title>Perfil de tu mascota | NutriPatas</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%90%BE%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Karla:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind-config.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen selection:bg-primary-fixed selection:text-on-primary-fixed" data-page="pet">
+
+<main class="flex flex-col relative w-full pt-safe pb-safe bg-surface min-h-screen">
+    <div class="flex flex-col w-full px-margin-mobile pb-space-xl">
+
+        <!-- Progreso -->
+        <div class="flex items-center justify-between pt-space-md mb-space-md">
+            <div class="flex items-center gap-space-xs">
+                <a id="btn-close-form" href="index.html" aria-label="Volver al inicio" class="w-10 h-10 -ml-2 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container active:scale-95 transition-all">
+                    <span class="material-symbols-outlined text-[24px]">arrow_back</span>
+                </a>
+                <div class="flex items-center space-x-space-xs" aria-hidden="true">
+                    <span class="w-8 h-2 rounded-full bg-primary-container inline-block"></span>
+                    <span class="w-2.5 h-2 rounded-full bg-surface-container-highest inline-block"></span>
+                    <span class="w-2.5 h-2 rounded-full bg-surface-container-highest inline-block"></span>
+                </div>
+            </div>
+            <span class="font-label-md text-label-md bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">pets</span>
+                Paso 1 de 3
+            </span>
+        </div>
+
+        <!-- Título -->
+        <div class="flex flex-col gap-space-xs mb-space-lg">
+            <div class="inline-flex items-center gap-1.5 text-primary font-label-md text-label-md">
+                <span class="material-symbols-outlined text-[16px]">celebration</span>
+                <span id="welcomeTag">¡Bienvenido a NutriPatas!</span>
+            </div>
+            <h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">¡Cuéntanos sobre tu mejor amigo peludo!</h1>
+            <p class="font-body-md text-body-md text-on-surface-variant">Personalizaremos las mejores dietas naturales, croquetas y premios para su salud.</p>
+        </div>
+
+        <!-- Selector de especie -->
+        <div class="mb-space-lg">
+            <div class="flex items-center justify-between mb-space-sm">
+                <span class="font-label-lg text-label-lg text-on-surface">¿Quién alegra tus días?</span>
+                <span class="font-body-sm text-body-sm text-tertiary">Elige tu compañero</span>
+            </div>
+            <div class="grid grid-cols-3 gap-gutter-mobile mb-space-xs">
+                <button type="button" data-species="Perro" aria-pressed="false" class="species-btn relative flex flex-col items-center justify-center p-3 rounded-lg text-on-surface transition-all bg-surface-container-low">
+                    <span class="absolute -top-2 bg-primary text-on-primary font-label-sm text-label-sm px-2 py-0.5 rounded-full shadow-sm">Favorito</span>
+                    <div class="species-circle w-12 h-12 rounded-full flex items-center justify-center mb-1 bg-surface-container-high text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">sound_detection_dog_barking</span>
+                    </div>
+                    <span class="font-label-md text-label-md">Perro</span>
+                    <span class="font-body-sm text-[10px] text-on-surface-variant">Canino</span>
+                </button>
+                <button type="button" data-species="Gato" aria-pressed="false" class="species-btn relative flex flex-col items-center justify-center p-3 rounded-lg text-on-surface transition-all bg-surface-container-low">
+                    <div class="species-circle w-12 h-12 rounded-full flex items-center justify-center mb-1 bg-surface-container-high text-on-surface-variant">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7" aria-hidden="true"><path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3.1-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.89-6.42-.5-7 1.39-.58 4.72.26 6.5 2.26A10.8 10.8 0 0 1 12 5Z"></path><path d="M8 14v.5"></path><path d="M16 14v.5"></path><path d="M11.25 16.25h1.5L12 17l-.75-.75Z"></path></svg>
+                    </div>
+                    <span class="font-label-md text-label-md">Gato</span>
+                    <span class="font-body-sm text-[10px] text-on-surface-variant">Felino</span>
+                </button>
+                <button type="button" data-species="Ave" aria-pressed="false" class="species-btn relative flex flex-col items-center justify-center p-3 rounded-lg text-on-surface transition-all bg-surface-container-low">
+                    <div class="species-circle w-12 h-12 rounded-full flex items-center justify-center mb-1 bg-surface-container-high text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[28px]">raven</span>
+                    </div>
+                    <span class="font-label-md text-label-md">Ave</span>
+                    <span class="font-body-sm text-[10px] text-on-surface-variant">Alas felices</span>
+                </button>
+            </div>
+            <div class="grid grid-cols-2 gap-gutter-mobile">
+                <button type="button" data-species="Roedor" aria-pressed="false" class="species-btn flex items-center gap-3 p-3 rounded-lg text-on-surface text-left transition-all bg-surface-container-low">
+                    <div class="species-circle w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 bg-surface-container-high text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[22px]">pets</span>
+                    </div>
+                    <div>
+                        <span class="font-label-md text-label-md block">Roedor</span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">Conejo, cobaya...</span>
+                    </div>
+                </button>
+                <button type="button" data-species="Exótico" aria-pressed="false" class="species-btn flex items-center gap-3 p-3 rounded-lg text-on-surface text-left transition-all bg-surface-container-low">
+                    <div class="species-circle w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 bg-surface-container-high text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[22px]">auto_awesome</span>
+                    </div>
+                    <div>
+                        <span class="font-label-md text-label-md block">Exóticos</span>
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">Reptil, erizo...</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Ficha de la mascota -->
+        <div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm mb-space-lg flex flex-col gap-space-md">
+            <div class="flex items-center gap-space-md">
+                <div class="relative flex-shrink-0">
+                    <div id="avatarBox"></div>
+                    <button type="button" id="avatarBtn" aria-label="Cambiar foto de la mascota" class="absolute -bottom-1 -right-1 w-7 h-7 bg-primary-container text-on-primary rounded-full flex items-center justify-center shadow-md active:scale-90 transition-transform">
+                        <span class="material-symbols-outlined text-[16px]">photo_camera</span>
+                    </button>
+                    <input type="file" id="photoInput" accept="image/*" class="hidden">
+                </div>
+                <div class="flex-1 min-w-0">
+                    <span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Ficha Nutricional</span>
+                    <h2 class="font-headline-sm text-headline-sm text-on-surface truncate" id="summaryPetName">Tu Mascota</h2>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant truncate" id="summaryPetMeta"></p>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-space-sm">
+                <div>
+                    <label class="font-label-md text-label-md text-on-surface-variant block mb-1" for="petNameInput">Nombre de tu mascota</label>
+                    <div class="relative flex items-center">
+                        <span class="material-symbols-outlined absolute left-3 text-outline text-[20px]">badge</span>
+                        <input class="w-full bg-surface-container-low text-on-surface rounded pl-10 pr-4 py-3 font-body-md text-body-md outline-none focus:bg-surface-container-lowest focus:shadow-sm transition-all" id="petNameInput" placeholder="Ej. Luna, Milo, Toby" type="text" maxlength="30" autocomplete="off">
+                    </div>
+                    <p id="nameError" class="hidden font-body-sm text-body-sm text-error mt-1" role="alert">Escribe un nombre para continuar.</p>
+                </div>
+                <div>
+                    <label class="font-label-md text-label-md text-on-surface-variant block mb-1" for="petBreedInput">Raza</label>
+                    <div class="relative flex items-center">
+                        <span class="material-symbols-outlined absolute left-3 text-outline text-[20px]">pets</span>
+                        <input class="w-full bg-surface-container-low text-on-surface rounded pl-10 pr-4 py-3 font-body-md text-body-md outline-none focus:bg-surface-container-lowest focus:shadow-sm transition-all" id="petBreedInput" placeholder="Ej. Golden Retriever, Mestizo" type="text" maxlength="40" autocomplete="off">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-gutter-mobile">
+                    <div>
+                        <label class="font-label-md text-label-md text-on-surface-variant block mb-1" for="petAgeInput">Edad</label>
+                        <div class="relative flex items-center">
+                            <span class="material-symbols-outlined absolute left-3 text-outline text-[20px]">cake</span>
+                            <input class="w-full bg-surface-container-low text-on-surface rounded pl-10 pr-3 py-3 font-body-md text-body-md outline-none focus:bg-surface-container-lowest focus:shadow-sm transition-all" id="petAgeInput" placeholder="Ej. 3 años" type="text" maxlength="20" autocomplete="off">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="font-label-md text-label-md text-on-surface-variant block mb-1" for="petWeightInput">Peso aprox.</label>
+                        <div class="relative flex items-center">
+                            <span class="material-symbols-outlined absolute left-3 text-outline text-[20px]">scale</span>
+                            <input class="w-full bg-surface-container-low text-on-surface rounded pl-10 pr-3 py-3 font-body-md text-body-md outline-none focus:bg-surface-container-lowest focus:shadow-sm transition-all" id="petWeightInput" placeholder="Ej. 18 kg" type="text" inputmode="decimal" maxlength="12" autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+                <!-- Nivel de actividad (toca para cambiar) -->
+                <div class="bg-surface-container-low rounded p-3 flex items-center justify-between mt-1">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-secondary text-[22px]">directions_run</span>
+                        <div>
+                            <span class="font-label-md text-label-md text-on-surface block">Nivel de Actividad</span>
+                            <span class="font-body-sm text-[12px] text-on-surface-variant" id="activityDesc"></span>
+                        </div>
+                    </div>
+                    <button type="button" id="activityBtn" aria-label="Cambiar nivel de actividad" class="font-label-md text-label-md bg-secondary text-on-secondary px-3 py-1 rounded-full shadow-sm active:scale-95 transition-transform">
+                        <span id="activityLabel">Activo</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dieta -->
+        <div class="mb-space-lg">
+            <div class="flex items-center justify-between mb-space-xs">
+                <h3 class="font-headline-sm text-headline-sm text-on-surface">Dieta habitual o deseada</h3>
+                <span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface px-2 py-0.5 rounded-full">Multi-opción</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mb-space-md">Selecciona cómo se alimenta hoy o el menú al que deseas hacer transición.</p>
+            <div class="flex flex-col gap-space-sm" id="dietOptionsContainer">
+                <div class="diet-card cursor-pointer bg-surface-container-lowest rounded-lg p-space-md shadow-sm transition-all flex items-center justify-between" data-diet="croquetas">
+                    <div class="flex items-center gap-space-md min-w-0">
+                        <div class="w-12 h-12 rounded-full bg-primary-fixed-dim/40 flex items-center justify-center text-primary flex-shrink-0"><span class="material-symbols-outlined text-[26px]">nutrition</span></div>
+                        <div class="min-w-0">
+                            <span class="font-label-lg text-label-lg text-on-surface block truncate">Croquetas / Pienso Premium</span>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">Extrusión lenta y alto porcentaje cárnico</p>
+                        </div>
+                    </div>
+                    <div class="diet-checkbox w-6 h-6 rounded-full bg-surface-container-high text-transparent flex items-center justify-center flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[16px]">check</span></div>
+                </div>
+                <div class="diet-card cursor-pointer bg-surface-container-lowest rounded-lg p-space-md shadow-sm transition-all flex items-center justify-between" data-diet="humeda">
+                    <div class="flex items-center gap-space-md min-w-0">
+                        <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant flex-shrink-0"><span class="material-symbols-outlined text-[26px]">soup_kitchen</span></div>
+                        <div class="min-w-0">
+                            <span class="font-label-lg text-label-lg text-on-surface block truncate">Comida Húmeda / Latas Gourmet</span>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">Hidratación extra con caldos de huesos</p>
+                        </div>
+                    </div>
+                    <div class="diet-checkbox w-6 h-6 rounded-full bg-surface-container-high text-transparent flex items-center justify-center flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[16px]">check</span></div>
+                </div>
+                <div class="diet-card cursor-pointer bg-surface-container-lowest rounded-lg p-space-md shadow-sm transition-all flex items-center justify-between" data-diet="barf">
+                    <div class="flex items-center gap-space-md min-w-0">
+                        <div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary flex-shrink-0"><span class="material-symbols-outlined text-[26px]">set_meal</span></div>
+                        <div class="min-w-0">
+                            <div class="flex items-center gap-2">
+                                <span class="font-label-lg text-label-lg text-on-surface block truncate">Dieta BARF / Natural</span>
+                                <span class="font-label-sm text-[10px] bg-tertiary-container text-on-tertiary-container px-2 py-0.5 rounded-full font-bold uppercase whitespace-nowrap">⭐ Más Fresco</span>
+                            </div>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">Congelada, cruda biológicamente apropiada</p>
+                        </div>
+                    </div>
+                    <div class="diet-checkbox w-6 h-6 rounded-full bg-surface-container-high text-transparent flex items-center justify-center flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[16px]">check</span></div>
+                </div>
+                <div class="diet-card cursor-pointer bg-surface-container-lowest rounded-lg p-space-md shadow-sm transition-all flex items-center justify-between" data-diet="hipoalergenica">
+                    <div class="flex items-center gap-space-md min-w-0">
+                        <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant flex-shrink-0"><span class="material-symbols-outlined text-[26px]">spa</span></div>
+                        <div class="min-w-0">
+                            <div class="flex items-center gap-2">
+                                <span class="font-label-lg text-label-lg text-on-surface block truncate">Hipoalergénica (Grain Free)</span>
+                                <span class="font-label-sm text-[10px] bg-secondary-fixed text-on-secondary-fixed px-2 py-0.5 rounded-full font-bold whitespace-nowrap">Sensible</span>
+                            </div>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">Cero maíz, trigo o soya; proteína novel</p>
+                        </div>
+                    </div>
+                    <div class="diet-checkbox w-6 h-6 rounded-full bg-surface-container-high text-transparent flex items-center justify-center flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[16px]">check</span></div>
+                </div>
+                <div class="diet-card cursor-pointer bg-surface-container-lowest rounded-lg p-space-md shadow-sm transition-all flex items-center justify-between" data-diet="senior">
+                    <div class="flex items-center gap-space-md min-w-0">
+                        <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant flex-shrink-0"><span class="material-symbols-outlined text-[26px]">monitor_weight</span></div>
+                        <div class="min-w-0">
+                            <span class="font-label-lg text-label-lg text-on-surface block truncate">Control de Peso / Senior</span>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">Bajo en grasas y rico en condroprotectores</p>
+                        </div>
+                    </div>
+                    <div class="diet-checkbox w-6 h-6 rounded-full bg-surface-container-high text-transparent flex items-center justify-center flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[16px]">check</span></div>
+                </div>
+                <div class="diet-card cursor-pointer bg-surface-container-lowest rounded-lg p-space-md shadow-sm transition-all flex items-center justify-between" data-diet="medicada">
+                    <div class="flex items-center gap-space-md min-w-0">
+                        <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant flex-shrink-0"><span class="material-symbols-outlined text-[26px]">medical_services</span></div>
+                        <div class="min-w-0">
+                            <span class="font-label-lg text-label-lg text-on-surface block truncate">Dietas Medicadas o Renal/Digestivo</span>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">Soporte prescrito por veterinario</p>
+                        </div>
+                    </div>
+                    <div class="diet-checkbox w-6 h-6 rounded-full bg-surface-container-high text-transparent flex items-center justify-center flex-shrink-0 ml-2"><span class="material-symbols-outlined text-[16px]">check</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Garantía -->
+        <div class="bg-secondary-fixed/50 rounded-lg p-space-md mb-space-lg flex items-center gap-space-sm">
+            <span class="material-symbols-outlined text-secondary text-[28px] flex-shrink-0">verified</span>
+            <p class="font-body-sm text-body-sm text-on-secondary-fixed-variant">Nuestras recetas son formuladas por <strong>médicos veterinarios zootecnistas</strong> y certificadas con ingredientes 100% grado humano.</p>
+        </div>
+
+        <!-- Resumen y botón de guardar -->
+        <div class="sticky bottom-3 z-30 bg-surface-container-lowest/95 backdrop-blur-md rounded-lg p-space-md shadow-xl flex flex-col gap-space-sm">
+            <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="relative flex-shrink-0">
+                        <div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold" id="summaryInitial">?</div>
+                        <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-secondary rounded-full border-2 border-surface-container-lowest"></span>
+                    </div>
+                    <div class="min-w-0">
+                        <span class="font-label-md text-label-md text-on-surface block leading-tight truncate">Listo para consentir a <span class="text-primary font-bold" id="summaryFooterName">Tu Mascota</span></span>
+                        <span class="font-body-sm text-[12px] text-on-surface-variant" id="summaryPlan"></span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-1 text-primary flex-shrink-0">
+                    <span class="material-symbols-outlined text-[18px]">favorite</span>
+                    <span class="font-label-sm text-label-sm hidden xs:inline">Nutrición 100% Vital</span>
+                </div>
+            </div>
+            <button type="button" id="submitBtn" class="w-full bg-primary hover:bg-primary-container text-on-primary rounded-full py-4 px-space-md font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-all disabled:opacity-90">
+                <span>Guardar perfil y ver catálogo</span>
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+            </button>
+        </div>
+
+        <button type="button" id="deleteBtn" class="hidden self-center mt-space-lg font-label-md text-label-md text-error hover:underline">Eliminar esta mascota</button>
+    </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
